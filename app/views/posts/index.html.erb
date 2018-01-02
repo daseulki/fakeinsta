@@ -1,6 +1,6 @@
 <h1>인덱스 페이지</h1>
-<% @posts.each do |post| %>
-  제목: <%= post.title %><br />
+<% @post.each do |post| %>
+  제목: <a href="/posts/<%=post.id%>"><%= post.title %></a><br />
   글쓴이: <%= post.name %>
   <hr />
 <%end%>

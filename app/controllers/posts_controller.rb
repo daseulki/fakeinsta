@@ -1,32 +1,35 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @post = Post.all
   end
 
   def new
   end
 
   def create
-    post = Post.new
-    post.title = params[:title]
-    post.name = params[:name]
-    post.content = params[:content]
+    @post = Post.create(
+      title: params[:title],
+      content: params[:content],
+      name: params[:name]
+    )
+    redirect_to "/"
 
-    post.save
-    
   end
 
   def edit
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def update
 
   end
 
-  def delete
+  def destroy
+    @post = Post.find(params[:id]).destroy
+    redirect_to "/"
   end
 
 end
