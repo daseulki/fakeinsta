@@ -16,15 +16,22 @@ class PostsController < ApplicationController
 
   end
 
-  def edit
-  end
-
   def show
     @post = Post.find(params[:id])
   end
 
-  def update
+  def edit
+    @post = Post.find(params[:id])
+  end
 
+
+  def update
+    @post = Post.find(params[:id]).update(
+      title: params[:title],
+      content: params[:content],
+      name: params[:name]
+    )
+    redirect_to "/"
   end
 
   def destroy
