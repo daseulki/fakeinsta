@@ -10,8 +10,10 @@ class PostsController < ApplicationController
     @post = Post.create(
       title: params[:title],
       content: params[:content],
-      name: params[:name]
+      name: params[:name],
+      postimage: params[:postimage]
     )
+    
     redirect_to "/"
 
   end
