@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       name: params[:name],
       postimage: params[:postimage]
     )
-    
+
     redirect_to "/"
 
   end
@@ -39,6 +39,12 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id]).destroy
     redirect_to "/"
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :postimage)
+
   end
 
 end

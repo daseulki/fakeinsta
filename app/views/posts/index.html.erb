@@ -1,9 +1,17 @@
 <h1>인스타그램</h1>
-<% @post.each do |post| %>
-  제목: <a href="/posts/<%=post.id%>"><%= post.title %></a><br />
-  글쓴이: <%= post.name %>
+
+<div class="row">
+  <% @post.each do |post| %>
+    <div class="col-sm-4 mt-5">
+      <img src="<%=post.postimage.thumb%>" class="img-fluid"><br />
+      제목: <a href="/posts/<%=post.id%>"><%= post.title %></a><br />
+      글쓴이: <%= post.name %><br />
+    </div>
+  <%end%>
   <hr />
-<%end%>
+
+</div>
+
 
 
 <h2><a href="/posts/new">게시글 쓰기</a></h2>
