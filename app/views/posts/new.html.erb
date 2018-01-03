@@ -1,17 +1,18 @@
-<form action="/posts" method="post" enctype="multipart/form-data">
+<!-- <form action="/posts" method="post" enctype="multipart/form-data">
   <input type="text" name="name" placeholder="이름"/><br />
   <input type="text" name="title" placeholder="제목"/><br />
   <textarea name="content" placeholder="내용"></textarea><br />
   <input type="file" name="postimage"><br />
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   <input type="submit" value="뿅">
-</form>
+</form> -->
+
+<h3>게시글 작성하기</h3>
+<%= form_tag("/posts", method: "post", multipart: true) do %>
+  제목 : <%= text_field_tag("post[title]") %> <br />
+  내용 : <%= text_area_tag("post[content]") %> <br />
+  <%= file_field_tag("post[postimage]") %><br />
+  <%= submit_tag value="뿅" %>
+<% end %>
 
 <hr />
-<!-- <%= form_tag("/posts",method: "post", multipart: true) do |post| %>
-  <%= text_field_tag("post[name]")%> <br />
-  <%= text_field_tag("post[title]")%> <br />
-  <%= text_area_tag("post[content]")%> <br />
-  <%= file_field_tag("post[postimage]")%> <br />
-  <%=submit_tag %>
-<%end%> -->

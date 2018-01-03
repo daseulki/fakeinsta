@@ -1,17 +1,22 @@
-<h1>인스타그램</h1>
-
-<div class="row">
-  <% @post.each do |post| %>
-    <div class="col-sm-4 mt-5">
-      <img src="<%=post.postimage.thumb%>" class="img-fluid"><br />
-      제목: <a href="/posts/<%=post.id%>"><%= post.title %></a><br />
-      글쓴이: <%= post.name %><br />
+<% @post.in_groups_of(3, false).each do |group| %>
+  <div class="row">
+  <% group.each do |post| %>
+    <div class="col-sm-4 mt-5 align-self-center">
+      <!-- <div class="justify-content-center"> -->
+        <figure class="figure d-flex justify-content-center flex-column align-items-center">
+          <img src="<%=post.postimage.thumb%>" class="figure-img img-fluid">
+          <figcaption class="figure-caption text-center">
+            <a href="/posts/<%=post.id%>" ><%= post.title %></a>
+          </figcaption>
+        </figure>
+      <!-- </div> -->
     </div>
   <%end%>
   <hr />
 
 </div>
+<%end%>
 
 
 
-<h2><a href="/posts/new">게시글 쓰기</a></h2>
+<h3><a href="/posts/new">게시글 쓰기</a></h3>

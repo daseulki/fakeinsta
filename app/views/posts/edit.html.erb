@@ -1,8 +1,14 @@
-<form action="/posts/<%=@post.id%>" method="post">
+<!-- <form action="/posts/<%=@post.id%>" method="post">
   <input type="text" name="name" value="<%=@post.name%>"/>
   <input type="text" name="title" value="<%=@post.title%>"/>
   <textarea name="content" ><%=@post.content%></textarea>
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   <input type="hidden" name="_method" value="put" />
   <input type="submit" value="뿅">
-</form>
+</form> -->
+<h3>게시글 수정하기</h3>
+<%= form_tag("/posts/#{@post.id}", method: "put") do %>
+  <%= text_field_tag("post[title]", @post.title) %>
+  <%= text_area_tag("post[content]", @post.content) %>
+  <%= submit_tag value="뿅"%>
+<% end %>

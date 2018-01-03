@@ -1,10 +1,18 @@
+<div class="d-flex justify-content-center mt-3">
 
-제목: <%= @post.title %><br />
-글쓴이: <%= @post.name %><br />
-내용 : <%= @post.content%>
-<br />
-<img src="<%=@post.postimage%>">
-<br />
-<a href="/posts/<%=@post.id%>/edit">수정</a>
-<a data-method ="delete" href="/posts/<%=@post.id%>">삭제</a>
+  <figure class="figure">
+    <img src="<%=@post.postimage%>" class="figure-img img-fluid rounded" >
+    <figcaption class="figure-caption text-center">제목: <%= @post.title %><br />
+      <p>내용 : <%= @post.content%></p>
+    </figcaption>
+  </figure>
+</div>
+
+
+
+<hr />
+
+<p class = "text-right"><a href="/posts/<%=@post.id%>/edit">수정</a></p>
+<p class = "text-right"><a href="/posts/<%=@post.id%>" data-method="delete" data-confirm="삭제할래?">삭제</a></p>
+
 <hr />
