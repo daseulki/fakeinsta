@@ -8,6 +8,23 @@
   </figure>
 </div>
 
+<p>
+  <h5>댓글창</h5>
+</p>
+<%@post.comments.each do |comment|%>
+  <p><%=comment.content%></p>
+  <p><%=comment.created_at%></p>
+  <p class = "text-right"><a href="/posts/<%=@post.id%>/destroy_comment" data-method="delete" data-confirm="덧글 삭제할래?">X</a></p>
+  <hr />
+<%end%>
+<br />
+
+
+<%= form_tag("/posts/#{@post.id}/add_comment", method: "post", multipart: true) do %>
+  <%= text_area_tag("content") %> <br />
+  <%= hidden_field_tag("post_id", value= "#{@post.id}" )%>
+  <%= submit_tag value="뿅" %>
+<% end %>
 
 
 <hr />

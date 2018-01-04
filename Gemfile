@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+#회원 권한 기능
+gem 'cancancan', '~> 2.0'
 
 gem 'devise'
 

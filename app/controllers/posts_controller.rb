@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
+  before_action :is_post_owner?, only: [:edit, :destroy]
+  before_action :is_comment_owner?, only: [:destroy_comment]
 
   def index
     @post = Post.where("title LIKE ?", "%#{params["q"]}%")
@@ -16,6 +18,7 @@ class PostsController < ApplicationController
     current_user.posts.create(post_params)
 
     # Post.create(post_params)
+
     # post = Post.new
     # post.title = params[:title]
     # post.content = params[:content]
@@ -29,6 +32,20 @@ class PostsController < ApplicationController
 
   def show
     # @post = Post.find(params[:id])
+    @comments = Comment.all
+  end
+
+  def add_comment
+    comment = current_user.comments.new
+    comment.post_id = params[:post_id]
+    comment.content = params[:content]
+    comment.save
+    redirect_to :back
+  end
+
+  def destroy_comment
+    @comment.destroy
+    redirect_to :back
   end
 
   def edit
@@ -37,8 +54,7 @@ class PostsController < ApplicationController
 
 
   def update
-    @post.update(post_params
-    )
+    @post.update(post_params)
     redirect_to "/"
   end
 
@@ -61,4 +77,21 @@ class PostsController < ApplicationController
 
   end
 
+  def is_post_owner?
+    unless @post.user_id == current_user.id
+
+    flash[:alert] = "글 주인만 할 수 있어"
+    redirect_to :back
+
+    end
+  end
+
+  def is_comment_owner?
+    unless @comment.user_id == current_user.id
+
+    flash[:alert] = "덧글 주인만 할 수 있어"
+    redirect_to :back
+
+    end
+  end
 end

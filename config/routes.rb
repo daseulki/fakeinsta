@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   }
 
   get '/users/index' => 'users#index'
+
 #index
   root 'posts#index'
   resources :posts
+  post '/posts/:id/add_comment' => 'posts#add_comment'
+  delete 'posts/:id/destroy_comment' => 'post#destroy_comment'
+
   #get '/posts' => 'posts#index'
 
 #c
