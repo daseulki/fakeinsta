@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
 #index
   root 'posts#index'
+
   resources :posts
+
   post '/posts/:id/add_comment' => 'posts#add_comment'
-  delete 'posts/:id/destroy_comment' => 'post#destroy_comment'
+  delete 'posts/:id/destroy_comment/:comment_id' => 'posts#destroy_comment'
 
   #get '/posts' => 'posts#index'
 

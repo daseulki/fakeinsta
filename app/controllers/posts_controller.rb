@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
-  before_action :is_post_owner?, only: [:edit, :destroy]
-  before_action :is_comment_owner?, only: [:destroy_comment]
+  # before_action :is_post_owner?, only: [:edit, :destroy]
+  # before_action :is_comment_owner?, only: [:destroy_comment]
+
+  load_and_authorize_resource except:[:add_comment, :destroy_comment], param_method: :post_params
 
   def index
     @post = Post.where("title LIKE ?", "%#{params["q"]}%")
@@ -44,8 +46,11 @@ class PostsController < ApplicationController
   end
 
   def destroy_comment
+
+    @comment = Comment.find(params[:comment_id])
     @comment.destroy
     redirect_to :back
+
   end
 
   def edit

@@ -14,7 +14,7 @@
 <%@post.comments.each do |comment|%>
   <p><%=comment.content%></p>
   <p><%=comment.created_at%></p>
-  <p class = "text-right"><a href="/posts/<%=@post.id%>/destroy_comment" data-method="delete" data-confirm="덧글 삭제할래?">X</a></p>
+  <p class = "text-right"><a href="/posts/<%=@post.id%>/destroy_comment/<%=comment.id%>" data-method="delete" data-confirm="덧글 삭제할래?">X</a></p>
   <hr />
 <%end%>
 <br />
@@ -28,8 +28,13 @@
 
 
 <hr />
+<%# if can? :update, @post %>
+  <p class = "text-right"><a href="/posts/<%=@post.id%>/edit">수정</a></p>
+<%#end%>
 
-<p class = "text-right"><a href="/posts/<%=@post.id%>/edit">수정</a></p>
-<p class = "text-right"><a href="/posts/<%=@post.id%>" data-method="delete" data-confirm="삭제할래?">삭제</a></p>
+<% if can? :destroy, @post %>
+  <p class = "text-right"><a href="/posts/<%=@post.id%>" data-method="delete" data-confirm="삭제할래?">삭제</a></p>
+  <%end%>
+
 
 <hr />
