@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #index
   root 'posts#index'
   resources :posts
-  get '/posts' => 'posts#index'
+  #get '/posts' => 'posts#index'
 
 #c
   #get '/posts/new'
