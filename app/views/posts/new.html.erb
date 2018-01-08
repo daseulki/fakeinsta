@@ -8,11 +8,13 @@
 </form> -->
 
 <h3>게시글 작성하기</h3>
-<%= form_tag("/posts", method: "post", multipart: true) do %>
-  제목 : <%= text_field_tag("post[title]") %> <br />
-  내용 : <%= text_area_tag("post[content]") %> <br />
-  <%= file_field_tag("post[postimage]") %><br />
-  <%= submit_tag value="뿅" %>
-<% end %>
+<div class="container">
 
-<hr />
+  <%= form_tag("/posts", method: "post", multipart: true, class: "mt-5") do %>
+    <%= text_field_tag("post[title]", nil, placeholder: "제목", class: "form-control") %> <br />
+    <%= file_field_tag("post[postimage]" ) %><br />
+    <%= text_area_tag("post[content]",nil, placeholder: "내용", class: "form-control") %> <br />
+    <%= button_tag("뿅" , class: "btn btn-primary ")  %>
+  <% end %>
+
+</div>

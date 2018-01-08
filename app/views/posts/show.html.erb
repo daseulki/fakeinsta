@@ -23,7 +23,7 @@
 <%= form_tag("/posts/#{@post.id}/add_comment", method: "post", multipart: true) do %>
   <%= text_area_tag("content") %> <br />
   <%= hidden_field_tag("post_id", value= "#{@post.id}" )%>
-  <%= submit_tag value="뿅" %>
+  <%= button_tag("뿅" , class: "btn btn-primary ")  %>
 <% end %>
 
 
